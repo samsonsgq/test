@@ -2,13 +2,11 @@ spring:
   application:
     name: mq-forwarder
 
+server:
+  port: 8080
+
 camel:
   component:
     activemq:
-      broker-url: ${ACTIVEMQ_BROKER_URL:tcp://localhost:61616}
-      user: ${ACTIVEMQ_USER:admin}
-      password: ${ACTIVEMQ_PASSWORD:admin}
-
-app:
-  input-queue: ${INPUT_QUEUE:incoming.events}
-  target-system-url: ${TARGET_SYSTEM_URL:localhost:8081/api/receive}
+      broker-url: "vm://embedded?broker.persistent=false"
+      trust-all-packages: true
